@@ -1,8 +1,9 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Stars from './Stars'
+import Loading from './Loading'
 
-const MovieDetails = ({ selectedMovie }) => {
+const MovieDetails = ({ selectedMovie, setMovieDetailsLoad, movieDetailsLoad}) => {
   const [movieDetails, setMovieDetails] = useState(null)
   const [rating, setRating] = useState(0)
   const API_KEY = import.meta.env.VITE_API_KEY
@@ -11,12 +12,16 @@ const MovieDetails = ({ selectedMovie }) => {
 
     async function getMovieDetails () {
       try {
+        setMovieDetailsLoad(true)
         const res = await axios.get(
           `http://www.omdbapi.com/?apikey=${API_KEY}&i=${selectedMovie}`
         )
         setMovieDetails(res?.data)
       } catch (error) {
         console.log(error)
+      }
+      finally{
+        setMovieDetailsLoad(false)
       }
     }
     getMovieDetails()
@@ -25,7 +30,8 @@ const MovieDetails = ({ selectedMovie }) => {
   }, [selectedMovie])
   return (
     <div className='h-4/5 bg-[#2b2f35] w-1/3 rounded-2xl'>
-      {movieDetails ? (
+    {movieDetailsLoad && <Loading />}
+      {!movieDetailsLoad && movieDetails ? (
         <div className='w-full'>
           <div className='flex bg-[#3e4249] rounded-2xl items-center h-60'>
             <img

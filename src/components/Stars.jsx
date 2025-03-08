@@ -4,16 +4,16 @@ const Stars = ({rating, setRating}) => {
   return (
     <div className='flex bg-[#3e4249] p-2 rounded-xl items-center'>
       {Array.from({ length: 10 }).map((_, index) => (
-        <Star key={index} starIndex={index} setRating={setRating} rating={rating} onHoverStar={rating >= index} />
+        <Star key={index} starIndex={index} setRating={setRating} rating={rating} onHoverStar={rating > index} />
       ))}
-      <span className='mx-3 w-5'>{rating + 1}</span>
+      <span className='mx-3 w-5'>{rating}</span>
     </div>
   )
 }
 
 const Star = ({setRating, onHoverStar, starIndex}) => {
   return (
-    <span className='mx-1' onClick={()=>{setRating(starIndex)}} onMouseEnter={()=>setRating(starIndex)}>
+    <span className='mx-1' onClick={()=>{setRating(starIndex+1)}} onMouseEnter={()=>setRating(starIndex+1)}>
       {onHoverStar ? (
         <svg
           height='20px'
