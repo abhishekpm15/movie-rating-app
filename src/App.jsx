@@ -21,7 +21,7 @@ function App() {
       }
       try {
         setIsLoad(true);
-        const res = await axios.get(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${searchMovie}`);
+        const res = await axios.get(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${searchMovie}`);
         setMovies(res.data.Search || []);
         setIsLoad(false)
       } catch (error) {
