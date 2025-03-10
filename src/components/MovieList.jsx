@@ -2,7 +2,7 @@ import React from 'react'
 import Movie from './Movie'
 import Loading from './Loading'
 
-const MovieList = ({ movies, setSelectedMovie, isLoad, setMoviesDetailsLoad }) => {
+const MovieList = ({ movies, setSelectedMovie, isLoad, setMoviesDetailsLoad, addWatchList, setAddWatchList, alreadyAdded, setAlreadyAdded}) => {
   return (
     <div className='h-4/5 bg-[#2b2f35] w-1/3 rounded-2xl overflow-auto'>
       {isLoad ? <Loading /> : null}
@@ -14,6 +14,10 @@ const MovieList = ({ movies, setSelectedMovie, isLoad, setMoviesDetailsLoad }) =
               movie={movie}
               setSelectedMovie={setSelectedMovie}
               setMoviesDetailsLoad={setMoviesDetailsLoad}
+              addWatchList={addWatchList} 
+              setAddWatchList={setAddWatchList}
+              alreadyAdded={alreadyAdded}
+              setAlreadyAdded={setAlreadyAdded}
             />
           ))}
         </div>

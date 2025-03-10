@@ -11,7 +11,8 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState('')
   const [isLoad, setIsLoad] = useState(false);
   const [movieDetailsLoad, setMovieDetailsLoad] = useState(false)
-
+  const [addWatchList,setAddWatchList] = useState([])
+  const [alreadyAdded, setAlreadyAdded] = useState('');
   const API_KEY = import.meta.env.VITE_API_KEY
 
   useEffect(()=>{
@@ -38,8 +39,8 @@ function App() {
     <div>
       <Navbar searchMovie={searchMovie} setSearchMovie={setSearchMovie} moveis={movies}/>
       <div className='flex space-x-5 mt-10 justify-center h-screen'>
-        <MovieList movies={movies} setMovies={setMovies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} isLoad={isLoad} setMovieDetailsLoad={setMovieDetailsLoad}/>
-        <MovieDetails moveis={movies} selectedMovie={selectedMovie} isLoad={isLoad} setMovieDetailsLoad={setMovieDetailsLoad} movieDetailsLoad={movieDetailsLoad}/>
+        <MovieList movies={movies} setMovies={setMovies} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} isLoad={isLoad} setMovieDetailsLoad={setMovieDetailsLoad} addWatchList={addWatchList} setAddWatchList={setAddWatchList} alreadyAdded={alreadyAdded} setAlreadyAdded={setAlreadyAdded}/>
+        <MovieDetails moveis={movies} selectedMovie={selectedMovie} isLoad={isLoad} setMovieDetailsLoad={setMovieDetailsLoad} movieDetailsLoad={movieDetailsLoad} addWatchList={addWatchList} setAddWatchList={setAddWatchList} alreadyAdded={alreadyAdded} setAlreadyAdded={setAlreadyAdded}/>
       </div>
     </div>
   )

@@ -1,8 +1,20 @@
 import React from 'react'
 
-const Movie = ({ movie, setSelectedMovie }) => {
+const Movie = ({ movie, setSelectedMovie, addWatchList, setAddWatchList , setAlreadyAdded}) => {
+
+  const selectedMovieCheck = (imdbID) =>{
+    const checkAlreadyAdded = addWatchList.some((movie) => movie.imdbID === imdbID)
+    if(checkAlreadyAdded){
+        setAlreadyAdded(addWatchList.filter((movie) => movie.imdbID === imdbID))
+    }
+    else{
+      setAlreadyAdded('')
+      setSelectedMovie(movie.imdbID)
+    }
+  }
+
   return (
-    <div onClick={()=>{setSelectedMovie(movie.imdbID)}}>
+    <div onClick={()=>{selectedMovieCheck(movie.imdbID)}}>
       <div className='flex space-x-5 hover:bg-[#3e4249] p-3 px-7 cursor-pointer duration-500'>
         <div>
           <img src={movie.Poster} alt={movie.imdbID} width={55} />
